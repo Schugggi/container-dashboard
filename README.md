@@ -3,8 +3,14 @@
 - [Container Dashboard App](#container-dashboard-app)
   - [Beschreibung](#beschreibung)
   - [Analyse](#analyse)
+    - [Verschiedene Container Services](#verschiedene-container-services)
     - [Entscheidung](#entscheidung)
+    - [Verschiedene Frontend Technologien](#verschiedene-frontend-technologien)
     - [Entscheidung](#entscheidung-1)
+  - [Wochenabläufe](#wochenabläufe)
+    - [Woche 1](#woche-1)
+      - [Ziele](#ziele)
+      - [Erreicht](#erreicht)
   - [Authors and acknowledgment](#authors-and-acknowledgment)
   - [License](#license)
   - [Project status](#project-status)
@@ -14,7 +20,7 @@ Das Container Dashboard umfasst eine Frontend Applikation, welche dem Endnutzer 
 
 ## Analyse
 
-### Verschiedene Container Services
+### Verschiedene Container Services
 
 Container Services (OCI Compliant):
 -	Docker
@@ -48,7 +54,7 @@ Ich entscheide mich, Docker als Container Service zu verwenden, da ich bereits e
 Das Dashbaord ist eine lokale Desktopanwendung und ist nur für lokale Container gedacht, dabei sind die meisten Nachteile von Docker gegenüber seinen Konkurrenten nicht im Fokus.
 Docker bietet auch eine gut ausgreifte API was für mich ein wichtiges Entscheidungskriterium ist.
 
-### Verschiedene Frontend Technologien
+### Verschiedene Frontend Technologien
 
 -	Electron
     -	Läuft auf Windows und MacOS
@@ -67,6 +73,18 @@ Das Frontend meiner Applikation setze ich mit Electron um. Electron bietet mir d
 Für mich ist wichtig, dass es sich um eine Desktop Anwendung handelt und dass es als alleinstehende Applikation ohne Backend funktioniert.
 Direkte Integration mit Docker ist möglich mit Dockerode.
 Als UI Library verwende ich React TS, da ich mein Wissen mit React ausbauen möchte und mir Typescript Typisierung gibt was ich als wichtigen Vorteil empfinde.
+
+## Wochenabläufe
+
+### Woche 1
+
+#### Ziele
+
+- Einfaches Frontend mit Electron aufsetzen
+- Verbindung zu Docker Backend mit Library herstellen
+- Container in einer Liste anzeigen
+
+#### Erreicht
 
 ## Authors and acknowledgment
 
