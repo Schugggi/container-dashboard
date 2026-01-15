@@ -1,0 +1,24 @@
+{
+  "name": "container-dashboard",
+  "version": "1.0.0",
+  "description": "The container-dashboard is a desktop application to view docker containers",
+  "homepage": "https://github.com/Schugggi/container-dashboard#readme",
+  "bugs": {
+    "url": "https://github.com/Schugggi/container-dashboard/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Schugggi/container-dashboard.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "electron": "^39.2.7"
+  }
+}
