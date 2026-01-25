@@ -88,7 +88,8 @@ Als UI Library verwende ich React TS, da ich mein Wissen mit React ausbauen möc
 
 ## Authors and acknowledgment
 
-Joel Fritschi
+- Joel Fritschi
+- Danksagung an Eray Cimen für die Empfehlung des Electron Frameworks.
 
 ## License
 For open source projects, say how it is licensed.
