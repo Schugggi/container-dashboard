@@ -38,9 +38,64 @@ jobs:
           echo "out/make/ (if exists):"
           ls -la out/make || true
 
-      - name: Upload assets to GitHub Release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ github.ref_name }}
-          files: |
-            out/make/**
+      - name: Upload assets to release (safe)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+      
+          # debug: show what tag we're using
+          TAG="${GITHUB_REF_NAME:-${GITHUB_REF##*/}}"
+          echo "Using tag: $TAG"
+      
+          REPO="$GITHUB_REPOSITORY"
+          API="https://api.github.com/repos/$REPO"
+      
+          # Ensure jq is available for JSON parsing
+          if ! command -v jq >/dev/null 2>&1; then
+            echo "Installing jq..."
+            sudo apt-get update -y
+            sudo apt-get install -y jq
+          fi
+      
+          # Try to get an existing release by tag
+          http_status=$(curl -s -o /tmp/release.json -w "%{http_code}" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "$API/releases/tags/$TAG" || true)
+      
+          if [ "$http_status" = "200" ]; then
+            release_id=$(jq -r .id /tmp/release.json)
+            upload_url=$(jq -r .upload_url /tmp/release.json)
+            echo "Found existing release id=$release_id"
+          else
+            echo "Release for tag $TAG not found (HTTP $http_status). Creating release..."
+            body=$(jq -n --arg tag "$TAG" --arg name "$TAG" '{ tag_name: $tag, name: $name, draft: false, prerelease: false }')
+            create_resp=$(curl -s -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -d "$body" "$API/releases")
+            release_id=$(echo "$create_resp" | jq -r .id)
+            upload_url=$(echo "$create_resp" | jq -r .upload_url)
+            echo "Created release id=$release_id"
+          fi
+      
+          # upload_url has the template form "https://uploads.github.com/…{?name,label}"
+          upload_url=${upload_url%\{*}
+      
+          # Upload all files under out/make/**
+          shopt -s globstar nullglob
+          files=(out/make/**)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No files found in out/make to upload"
+            exit 0
+          fi
+      
+          for f in "${files[@]}"; do
+            [ -f "$f" ] || continue
+            filename=$(basename "$f")
+            echo "Uploading $filename ..."
+            curl -s -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: application/octet-stream" \
+              --data-binary @"$f" \
+              "$upload_url?name=$(printf '%s' "$filename" | jq -s -R -r @uri"")" \
+              | jq -r '.url // "upload_response_no_url"'
+          done
