@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Schugggi/container-dashboard.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Joel Fritschi",
   "type": "commonjs",
   "main": "main.js",
   "scripts": {
