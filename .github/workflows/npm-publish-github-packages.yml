@@ -75,7 +75,7 @@ jobs:
           upload_url=${upload_url%\{*}
       
           # Upload all files under out/make/**
-          files=$(find out/make -type f 2>/dev/null || true)
+          files=$(find out/make -type f -name "*-Setup.exe" -o -name "*.dmg" -o -name "*.deb" 2>/dev/null || true)
           if [ -z "$files" ]; then
             echo "No files found in out/make to upload"
             exit 0
