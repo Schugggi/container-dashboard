@@ -37,8 +37,6 @@ jobs:
           ls -la out || true
           echo "out/make/ (if exists):"
           ls -la out/make || true
-          echo "dist/ (if exists):"
-          ls -la dist || true
 
       - name: Upload assets to GitHub Release
         uses: ncipollo/release-action@v1
