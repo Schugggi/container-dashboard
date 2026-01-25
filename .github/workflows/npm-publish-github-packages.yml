@@ -75,20 +75,24 @@ jobs:
           upload_url=${upload_url%\{*}
       
           # Upload all files under out/make/**
-          files=$(find out/make -type f 2>/dev/null)
+          files=$(find out/make -type f 2>/dev/null || true)
           if [ -z "$files" ]; then
             echo "No files found in out/make to upload"
             exit 0
           fi
+
+          echo "Found files:"
+          echo "$files"
       
-          for f in "${files[@]}"; do
-            [ -f "$f" ] || continue
-            filename=$(basename "$f")
-            echo "Uploading $filename ..."
-            curl -s -X POST \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -H "Content-Type: application/octet-stream" \
-              --data-binary @"$f" \
-              "$upload_url?name=$(printf '%s' "$filename" | jq -s -R -r @uri"")" \
-              | jq -r '.url // "upload_response_no_url"'
+          for f in $files; do
+            if [ -f "$f" ]; then
+              filename=$(basename "$f")
+              echo "Uploading $f -> $filename"
+              curl -s -X POST \
+                -H "Authorization: token $GITHUB_TOKEN" \
+                -H "Content-Type: application/octet-stream" \
+                --data-binary @"$f" \
+                "$upload_url?name=$(printf '%s' "$filename" | jq -s -R -r @uri)" \
+                | jq -r '.url // "upload_response_no_url"'
+            fi
           done
