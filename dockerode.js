@@ -1,7 +1,6 @@
 var Docker = require('dockerode');
 var docker = new Docker({ socketPath: '/var/run/docker.sock' });
 
-
 const listDockerContainers = async () => {
     try {
         const containers = await docker.listContainers({ all: true });
