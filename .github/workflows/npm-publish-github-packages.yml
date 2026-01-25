@@ -2,6 +2,9 @@
 name: Build Release Assets
 
 on:
+  workflow_dispatch:
+    inputs:
+    
   release:
     types: [created]
 
