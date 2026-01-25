@@ -84,9 +84,8 @@ jobs:
           upload_url=${upload_url%\{*}
       
           # Upload all files under out/make/**
-          shopt -s globstar nullglob
-          files=(out/make/**)
-          if [ ${#files[@]} -eq 0 ]; then
+          files=$(find out/make -type f 2>/dev/null)
+          if [ -z "$files" ]; then
             echo "No files found in out/make to upload"
             exit 0
           fi
