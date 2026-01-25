@@ -84,7 +84,7 @@ jobs:
           echo "Found files:"
           echo "$files"
       
-          for f in $files; do
+          printf '%s\n' "$files" | while IFS= read -r f; do
             if [ -f "$f" ]; then
               filename=$(basename "$f")
               echo "Uploading $f -> $filename"
