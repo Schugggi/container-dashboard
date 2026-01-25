@@ -31,16 +31,6 @@ jobs:
       - name: Run maker (build packages)
         run: npm run make
 
-      - name: Show produced files
-        run: |
-          echo "Workspace: $(pwd)"
-          echo "Top-level files:"
-          ls -la || true
-          echo "out/ (if exists):"
-          ls -la out || true
-          echo "out/make/ (if exists):"
-          ls -la out/make || true
-
       - name: Upload assets to release (safe)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
