@@ -88,4 +88,4 @@ jobs:
             else
               echo "No Files to upload found"
             fi
-          done 9< <( find . -type f \( -name '*.dmg' -o -name '*.deb' -o -name '*.exe' \) -exec printf '%s\0' {} + )
+          done 9< <( find out/make -type f \( -name '*.dmg' -o -name '*.deb' -o -name '*.exe' \) -exec printf '%s\0' {} + )
