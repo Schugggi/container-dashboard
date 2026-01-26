@@ -74,17 +74,8 @@ jobs:
           # upload_url has the template form "https://uploads.github.com/…{?name,label}"
           upload_url=${upload_url%\{*}
       
-          # Upload all files under out/make/**
-          files=$(find out/make -type f 2>/dev/null || true)
-          if [ -z "$files" ]; then
-            echo "No files found in out/make to upload"
-            exit 0
-          fi
-
-          echo "Found files:"
-          echo "$files"
-      
-          for f in $files; do
+          shopt -s globstar  
+          for file in **/*; do  
             if [ -f "$f" ]; then
               filename=$(basename "$f")
               echo "Uploading $f -> $filename"
@@ -94,5 +85,7 @@ jobs:
                 --data-binary @"$f" \
                 "$upload_url?name=$(printf '%s' "$filename" | jq -s -R -r @uri)" \
                 | jq -r '.url // "upload_response_no_url"'
+            else
+              echo "No Files to upload found"
             fi
           done
