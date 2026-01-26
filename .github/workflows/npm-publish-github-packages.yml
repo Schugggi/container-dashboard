@@ -74,8 +74,8 @@ jobs:
           # upload_url has the template form "https://uploads.github.com/…{?name,label}"
           upload_url=${upload_url%\{*}
       
-          shopt -s globstar  
-          for file in **/*; do  
+          while IFS= LC_ALL=C read -r -d '' -u 9 file
+          do 
             if [ -f "$f" ]; then
               filename=$(basename "$f")
               echo "Uploading $f -> $filename"
@@ -88,4 +88,4 @@ jobs:
             else
               echo "No Files to upload found"
             fi
-          done
+          done 9< <( find . -type f -exec printf '%s\0' {} + )
