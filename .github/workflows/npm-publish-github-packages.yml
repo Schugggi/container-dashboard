@@ -76,13 +76,13 @@ jobs:
       
           while IFS= LC_ALL=C read -r -d '' -u 9 file
           do 
-            if [ -f "$f" ]; then
-              filename=$(basename "$f")
-              echo "Uploading $f -> $filename"
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              echo "Uploading $file -> $filename"
               curl -s -X POST \
                 -H "Authorization: token $GITHUB_TOKEN" \
                 -H "Content-Type: application/octet-stream" \
-                --data-binary @"$f" \
+                --data-binary @"$file" \
                 "$upload_url?name=$(printf '%s' "$filename" | jq -s -R -r @uri)" \
                 | jq -r '.url // "upload_response_no_url"'
             else
