@@ -11,6 +11,12 @@
     - [Woche 1](#woche-1)
       - [Ziele](#ziele)
       - [Erreicht](#erreicht)
+    - [Woche 2](#woche-2)
+      - [Ziele](#ziele-1)
+      - [Erreicht](#erreicht-1)
+      - [Hindernisse](#hindernisse)
+    - [Woche 3](#woche-3)
+      - [Ziele](#ziele-2)
   - [Authors and acknowledgment](#authors-and-acknowledgment)
   - [License](#license)
   - [Project status](#project-status)
@@ -85,6 +91,37 @@ Als UI Library verwende ich React TS, da ich mein Wissen mit React ausbauen möc
 - Container in einer Liste anzeigen
 
 #### Erreicht
+
+- Alle Ziele der Woche 1 konnten erfolgreich umgesetzt werden
+
+### Woche 2
+
+#### Ziele
+
+- Implementierung von GitHub Actions um die Applikation zu builden für die verschiedenen OS (MacOS, Windows, Linux)
+- Pipeline verwenden die bei einem GitHub Release automatisch das Build ausführt und die gebauten Installer zu den Release Assets hinzufügt
+
+#### Erreicht
+
+- Die GitHub Action konnte erfolgreich umgesetzt werden, es werden durch eine matrix switch von 3 verschiedenen Runners mit definierten host OS automatisch die Installer für MacOS, Windows und Linux gebaut.
+- Die Windows Version läuft auf einer VM getestet
+
+#### Hindernisse 
+
+- Die MacOS Version läuft noch nicht wenn es in der Pipeline gebaut wurde
+- Linux konnte noch nicht getestet werden
+- Probleme mit VM's von VirtualBox da Apple Silicon keine Nested Virtualisierung auf neueren Macbooks erlaubt
+- Testing von Windows und Linux noch unklar, wie das ganze umgesetzt werden soll
+- Probleme mit git, da online erstellte Branches nicht lokal gepullt und danach gepushd werden konnten
+  - Problem unklar
+
+### Woche 3
+
+#### Ziele
+
+- Fixen des MacOS Pipeline Build
+- Umstellen der Applikation auf Typescript
+- Einbauen von ReactTS
 
 ## Authors and acknowledgment
 
