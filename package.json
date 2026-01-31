@@ -30,10 +30,14 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.11.1",
     "@electron-forge/plugin-fuses": "^7.11.1",
     "@electron/fuses": "^1.8.0",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
     "electron": "^39.2.7"
   },
   "dependencies": {
     "dockerode": "^4.0.9",
-    "electron-squirrel-startup": "^1.0.1"
+    "electron-squirrel-startup": "^1.0.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   }
 }
