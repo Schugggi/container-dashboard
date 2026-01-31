@@ -123,6 +123,12 @@ Als UI Library verwende ich React TS, da ich mein Wissen mit React ausbauen möc
 - Umstellen der Applikation auf Typescript
 - Einbauen von ReactTS
 
+#### Erreicht
+
+- Problem für MacOS Build war, dass die Applikation nicht signiert ist und automatisch blockiert wird
+- Kann mit `xattr -cr /Applications/container-dashboard.app` umgangen werden (UNSICHER!!!)
+  - Signieren benötigt Apple Developer Account mit 100 CHF Jahresgebühren
+
 ## Authors and acknowledgment
 
 - Joel Fritschi
