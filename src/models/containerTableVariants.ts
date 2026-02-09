@@ -94,7 +94,7 @@ export const containerTableVariants = {
   /* -------------------------------------------------- */
   animated: {
     wrapper:
-      'relative flex flex-col w-full h-full overflow-auto bg-white rounded-xl shadow-lg',
+      'relative flex flex-col w-full h-full overflow-auto bg-white rounded-xl shadow-lg p-1',
     table:
       'w-full min-w-max table-auto text-left text-sm',
     th:
