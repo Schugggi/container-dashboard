@@ -23,6 +23,7 @@
     - [Woche 4](#woche-4)
       - [Ziele](#ziele-3)
       - [Erreicht](#erreicht-3)
+      - [Hindernisse](#hindernisse-1)
   - [Authors and acknowledgment](#authors-and-acknowledgment)
   - [Project status](#project-status)
 
@@ -169,6 +170,11 @@ Als UI-Library verwende ich React TS, da ich mein Wissen mit React ausbauen möc
 - Tailwind CSS wurde eingebunden.
 - Zwischen verschiedenen Themes kann ausgewählt werden.
 - Die CI-Pipeline wurde implementiert und als Build-Validation integriert.
+
+#### Hindernisse
+
+- Probleme mit dem Build der Applikation in der Pipeline (npm ci Command funktionierte nicht mehr)
+  - Problem war, dass lokale node Version (v24) von Pipeline Version (v20) nicht kompatibel war.
 
 ## Authors and acknowledgment
 
