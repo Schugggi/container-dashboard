@@ -1,5 +1,5 @@
 # Build application on release creation and attach produced files to the Release.
-name: Build Container Dashboard for Build Validation
+name: Container Dashbaord Build Validation
 
 on:
   workflow_dispatch:
