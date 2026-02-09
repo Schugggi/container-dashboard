@@ -1,6 +1,23 @@
 import Docker, { ContainerInfo } from 'dockerode';
 
-const docker = new Docker({ socketPath: '/var/run/docker.sock' });
+
+const docker = createDockerClient();
+
+function createDockerClient() : Docker {
+  const platform = process.platform;
+  if (platform === 'win32') {
+    return new Docker({
+      host: "127.0.0.1",
+      port: 2375,
+      protocol: "http",
+    });
+  }
+  else {
+    return new Docker({
+      socketPath: '/var/run/docker.sock'
+    });
+  }
+}
 
 interface ContainerDetails {
   id: string;
