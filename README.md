@@ -17,8 +17,10 @@
       - [Hindernisse](#hindernisse)
     - [Woche 3](#woche-3)
       - [Ziele](#ziele-2)
+      - [Erreicht](#erreicht-2)
+    - [Woche 4](#woche-4)
+      - [Ziele](#ziele-3)
   - [Authors and acknowledgment](#authors-and-acknowledgment)
-  - [License](#license)
   - [Project status](#project-status)
 
 ## Beschreibung
@@ -128,14 +130,20 @@ Als UI Library verwende ich React TS, da ich mein Wissen mit React ausbauen möc
 - Problem für MacOS Build war, dass die Applikation nicht signiert ist und automatisch blockiert wird
 - Kann mit `xattr -cr /Applications/container-dashboard.app` umgangen werden (UNSICHER!!!)
   - Signieren benötigt Apple Developer Account mit 100 CHF Jahresgebühren
+- Umschreibend der Applikation auf Typescript und Integration von React wurde erfolgreich umgesetzt
+
+### Woche 4
+
+#### Ziele
+
+- Erstellen von CI Pipeline für Build validierung auf Pull Request und Master Branch
+- Einbinden von Tailwind CSS
+- Verschiedene Themes für das Container Dashboard entwickeln
 
 ## Authors and acknowledgment
 
 - Joel Fritschi
 - Danksagung an Eray Cimen für die Empfehlung des Electron Frameworks.
-
-## License
-For open source projects, say how it is licensed.
 
 ## Project status
 
