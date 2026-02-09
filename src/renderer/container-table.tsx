@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ContainerTableVariant, containerTableVariants } from "../models/containerTableVariants";
 
 interface DockerPort {
   PrivatePort: number;
@@ -23,9 +24,15 @@ declare global {
   }
 }
 
+type ContainerTableProps = {
+  variant?: ContainerTableVariant;
+};
+
 const headers = ['ID', 'Name', 'Image', 'Status', 'State', 'Ports'];
 
-const ContainerTable: React.FC = () => {
+const ContainerTable: React.FC<ContainerTableProps> = ({ variant = 'default' }) => {
+  const styles = containerTableVariants[variant];
+
   const [containers, setContainers] = useState<Container[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,35 +53,43 @@ const ContainerTable: React.FC = () => {
   if (!containers.length) return <p>No containers found.</p>;
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {headers.map(header => (
-            <th key={header} style={{ fontWeight: 'bold' }}>
-              {header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {containers.map(container => (
-          <tr key={container.id}>
-            <td>{container.id}</td>
-            <td>{container.name}</td>
-            <td>{container.image}</td>
-            <td>{container.status}</td>
-            <td>{container.state}</td>
-            <td>
-              {container.ports.map(
-                port =>
-                  `${port.PrivatePort}->${port.PublicPort ?? ''}/${port.Type}`
-              ).join(', ')}
-            </td>
+    <div className={styles.wrapper}>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            {headers.map(header => (
+              <th
+                key={header}
+                className={styles.th}
+                style={{ fontWeight: 'bold' }}
+              >
+                <p className={styles.thText}>{header}</p>
+              </th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+        </thead>
+
+        <tbody>
+          {containers.map(container => (
+            <tr key={container.id} className={styles.tr}>
+              <td className={styles.td}>{container.id}</td>
+              <td className={styles.td}>{container.name}</td>
+              <td className={styles.td}>{container.image}</td>
+              <td className={styles.td}>{container.status}</td>
+              <td className={styles.td}>{container.state}</td>
+              <td className={styles.td}>
+                {container.ports
+                  .map(
+                    port =>
+                      `${port.PrivatePort}->${port.PublicPort ?? ''}/${port.Type}`
+                  )
+                  .join(', ')}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>);
 };
 
 export default ContainerTable;
